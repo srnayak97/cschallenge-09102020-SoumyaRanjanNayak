@@ -1,10 +1,9 @@
 from spellchecker import SpellChecker
 import re
-#from termcolor import colored
+
 import pandas as pd 
 
-#Enter the file name and path
-
+# Enter the file name and path
 path=r''
 file_name='Assignment_Sampledata.txt'
 
@@ -15,10 +14,10 @@ Lines = file1.readlines()
 
 
 class Text_Validation:
-    def check_error(Lines):
+    def CheckError(Lines):
         count=1
         word_list=[]
-        for line in Lines: 
+        for line in Lines:
     
             res1 = re.sub(r'[^\w\s]', '', line)
             res = re.sub('[0-9]', '', res1)
@@ -37,7 +36,7 @@ class Text_Validation:
         return word_list
     
     
-    def creat_excel(answer):
+    def CreatExcel(answer):
         df = pd.DataFrame(columns=['Line', 'word', 'correct_word'])
         for count, word, correct_word in answer:
             df = df.append({'Line': count, 'word': word, 'correct_word': correct_word}, ignore_index=True)
@@ -57,6 +56,6 @@ class Text_Validation:
 
 
           
-answer = Text_Validation.check_error(Lines)
-Text_Validation.creat_excel(answer)
+answer = Text_Validation.CheckError(Lines)
+Text_Validation.CreatExcel(answer)
 file1.close()
