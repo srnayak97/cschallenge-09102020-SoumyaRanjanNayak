@@ -1,10 +1,11 @@
 from spellchecker import SpellChecker
 import re
-from termcolor import colored
+#from termcolor import colored
 import pandas as pd 
 
 #Enter the file name and path
-path=r'E:\\GitHub\\spell_corrections\\'
+
+path=r''
 file_name='Assignment_Sampledata.txt'
 
 
@@ -12,7 +13,8 @@ spell = SpellChecker()
 file1 = open(path+file_name, 'r', encoding="utf8") 
 Lines = file1.readlines()
 
-class text_validation:
+
+class Text_Validation:
     def check_error(Lines):
         count=1
         word_list=[]
@@ -35,12 +37,12 @@ class text_validation:
         return word_list
     
     
-    def creat_excel(answer):    
+    def creat_excel(answer):
         df = pd.DataFrame(columns=['Line', 'word', 'correct_word'])
         for count, word, correct_word in answer:
             df = df.append({'Line': count, 'word': word, 'correct_word': correct_word}, ignore_index=True)
             
-        writer = pd.ExcelWriter('E:\\GitHub\\spell_corrections\\result.xlsx', engine='xlsxwriter')
+        writer = pd.ExcelWriter('result.xlsx', engine='xlsxwriter')
         df.to_excel(writer, sheet_name="Sheet1", index=False)
         
         worksheet = writer.sheets['Sheet1']
@@ -53,8 +55,8 @@ class text_validation:
         
         writer.close()
 
+
           
-answer=text_validation.check_error(Lines)
-text_validation.creat_excel(answer)
+answer = Text_Validation.check_error(Lines)
+Text_Validation.creat_excel(answer)
 file1.close()
-    
